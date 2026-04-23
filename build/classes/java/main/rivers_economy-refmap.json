@@ -1,0 +1,20 @@
+{
+  "mappings": {
+    "net/currencymod/mixin/SignEditMixin": {
+      "tryChangeText": "Lnet/minecraft/class_2625;method_49836(Lnet/minecraft/class_1657;ZLjava/util/List;)V"
+    },
+    "net/currencymod/mixin/WorldMixin": {
+      "<init>*": "Lnet/minecraft/class_1937;<init>(Lnet/minecraft/class_5269;Lnet/minecraft/class_5321;Lnet/minecraft/class_5455;Lnet/minecraft/class_6880;Ljava/util/function/Supplier;ZZJI)V"
+    }
+  },
+  "data": {
+    "named:intermediary": {
+      "net/currencymod/mixin/SignEditMixin": {
+        "tryChangeText": "Lnet/minecraft/class_2625;method_49836(Lnet/minecraft/class_1657;ZLjava/util/List;)V"
+      },
+      "net/currencymod/mixin/WorldMixin": {
+        "<init>*": "Lnet/minecraft/class_1937;<init>(Lnet/minecraft/class_5269;Lnet/minecraft/class_5321;Lnet/minecraft/class_5455;Lnet/minecraft/class_6880;Ljava/util/function/Supplier;ZZJI)V"
+      }
+    }
+  }
+}

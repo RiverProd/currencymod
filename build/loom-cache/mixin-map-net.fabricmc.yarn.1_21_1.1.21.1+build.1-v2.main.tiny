@@ -1,0 +1,2 @@
+v1	named	intermediary
+METHOD	net/currencymod/mixin/WorldMixin	()Lnet/minecraft/registry/RegistryKey;	getRegistryKey	method_27983

@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "currencymod",
+  "version": "1.0.0",
+  "name": "Currency Mod",
+  "description": "A mod that adds a currency system, player shops, and economy features to Minecraft",
+  "authors": ["CurrencyMod Team"],
+  "contact": {
+    "homepage": "https://example.com/",
+    "sources": "https://github.com/example/currencymod"
+  },
+  "license": "MIT",
+  "icon": "assets/currencymod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["net.currencymod.CurrencyMod"]
+  },
+  "mixins": ["currencymod.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "minecraft": "~1.21.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
