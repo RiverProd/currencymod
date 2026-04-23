@@ -19,7 +19,8 @@ import java.util.UUID;
 
 /**
  * Persists per-player GUI preference (on/off) to gui_preferences.json.
- * Default is false (text-based system) for all players.
+ * Default is true (GUI-based system) for all players.
+ * Note: false value means GUI is ON, true value means GUI is OFF (legacy text mode)
  */
 public class GuiPreferenceManager {
     private static final String PREFS_FILE = "currency_mod/gui_preferences.json";
@@ -43,11 +44,11 @@ public class GuiPreferenceManager {
     }
 
     public boolean isGuiEnabled(UUID playerUuid) {
-        return preferences.getOrDefault(playerUuid, false);
+        return !preferences.getOrDefault(playerUuid, false);
     }
 
     public void setGuiEnabled(UUID playerUuid, boolean enabled) {
-        preferences.put(playerUuid, enabled);
+        preferences.put(playerUuid, !enabled);
         save();
     }
 
