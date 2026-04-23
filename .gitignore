@@ -4,6 +4,12 @@
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# Claude
+.claude/
+CLAUDE.md
+PLOT_SYSTEM_REWORK.md
+gui.md
+
 # Web App
 riverside/
 
