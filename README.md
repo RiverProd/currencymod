@@ -141,7 +141,7 @@ Example configuration:
 After modifying the configuration file, you can reload it without restarting the server using the following command:
 
 ```
-/modconfig reload
+/currencyconfig reload
 ```
 
 This command requires operator permissions (permission level 2).
@@ -151,7 +151,7 @@ This command requires operator permissions (permission level 2).
 To view the current configuration settings, use:
 
 ```
-/modconfig
+/currencyconfig
 ```
 
 This command will display the current plot prices and other configuration settings.
@@ -164,7 +164,7 @@ This command will display the current plot prices and other configuration settin
 - `/plots` - Manage your plots
 - `/buyplot <type>` - Buy a plot
 - `/sellplot <type>` - Sell a plot
-- `/modconfig` - View and manage mod configuration
+- `/currencyconfig` - View and manage mod configuration
 
 ## How to Use
 
