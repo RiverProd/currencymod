@@ -15,9 +15,9 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
     - `/adminmoney pay <player> <amount>` - Give money to a player (admins only)
     - `/adminmoney fine <player> <amount>` - Remove money from a player (admins only)
   - **Trading Commands:**
-    - `/trade <player> <amount>` - Send a trade request for the item in your hand
-    - `/trade accept` - Accept a pending trade request
-    - `/trade deny` - Deny a pending trade request
+    - `/tradehand <player> <amount>` - Send a trade request for the item in your hand
+    - `/tradehand accept` - Accept a pending trade request
+    - `/tradehand deny` - Deny a pending trade request
   - **Auction Commands:**
     - `/auction create <price> <minutes>` - Create an auction for the item in your hand
     - `/auction view` - View the currently running auction
@@ -51,10 +51,7 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
       - `/plots remove` - Remove plot at current location (admin)
       - `/plots grant <player> <type>` - Grant a plot to a player (admin)
       - `/plots delete` - Permanently delete plot at current location (admin)
-  - **Marketplace Commands:**
-    - `/market` - Open the marketplace interface
-    - `/market setchest` - Set the marketplace chest location (admins only)
-  - **Data Management Commands:**
+    - **Data Management Commands:**
     - `/data save` - Force an immediate save of all data
     - `/data status` - View data management status and backup information
     - `/data backup create` - Create a manual backup of all data
@@ -182,13 +179,13 @@ The mod includes a direct player-to-player trading system:
 
 1. **Initiating a Trade:**
    - Hold the item you want to sell in your main hand
-   - Type `/trade <playername> <price>` to send a trade request
-   - Example: `/trade Steve 50` offers to sell the item in your hand to Steve for $50
+   - Type `/tradehand <playername> <price>` to send a trade request
+   - Example: `/tradehand Steve 50` offers to sell the item in your hand to Steve for $50
 
 2. **Receiving a Trade:**
    - When someone sends you a trade request, you'll see a message with details about the offer
    - The message includes clickable [Accept] and [Deny] buttons
-   - You can also type `/trade accept` or `/trade deny`
+   - You can also type `/tradehand accept` or `/tradehand deny`
    - Trade requests expire after 1 minute if not accepted or denied
 
 3. **Completing a Trade:**
@@ -311,46 +308,24 @@ The mod includes a jobs system that allows players to earn money by collecting r
 The mod includes a property ownership system with different types of plots:
 
 1. **Plot Types:**
-   - **Personal Plot:** Basic plot for personal use. Cost: $1000, Tax: $1/day
-   - **Farm Plot:** Medium plot for farming purposes. Cost: $2000, Tax: $2/day
-   - **Business Plot:** Premium plot for commercial uses. Cost: $3000, Tax: $3/day
+   - **Personal Plot:** Basic plot for personal use. Cost: $800, Tax: $0/day
+   - **Farm Plot:** Medium plot for farming purposes. Cost: $1600, Tax: $1/day
+   - **Business Plot:** Premium plot for commercial uses. Cost: $2400, Tax: $2/day
+   - **Industrial Plot:** Premium plot for auto farms uses. Cost: $2400, Tax: $2/day
+   - **Community Plot:** Premium plot for community uses. Cost: $800, Tax: minus $2/day
 
-2. **Buying Plots:**
-   - Use `/plots buy <type>` to purchase a plot of the specified type
-   - Example: `/plots buy farm` to buy a Farm plot
+2. **Buying and Selling Plots:**
+   - Use `/plots` to open the plots menu to purchase or sell plots
    - You must have enough money for the purchase price
 
 3. **Viewing Your Plots:**
    - Use `/plots` to see all plots you own
-   - The command shows the number of each plot type and the daily tax amount
+   - The command shows the number of each plot type and the daily tax amounte
 
-4. **Selling Plots:**
-   - Use `/plots sell <type>` to sell a plot
-   - You'll receive a partial refund of the purchase price
-   - Example: `/plots sell personal` to sell a Personal plot
-
-5. **Tax System:**
+4. **Tax System:**
    - Taxes are collected automatically once per day
    - You must have enough money to pay taxes or you'll be notified of tax debt
    - Admins can force tax collection with the `/tax` command (requires permission level 2+)
-
-### Marketplace System
-
-The mod includes a global marketplace for purchasing items directly from the server:
-
-1. **Opening the Marketplace:**
-   - Use `/market` to open the marketplace interface
-   - Browse through available items and their prices
-
-2. **Purchasing Items:**
-   - Click on an item in the marketplace to view details
-   - Confirm your purchase to buy the item
-   - The item will be added to your inventory and the cost deducted from your balance
-
-3. **Setting Up the Marketplace Chest (Admin Only):**
-   - Place a chest where you want to access the marketplace
-   - Use `/market setchest` to designate the chest as a marketplace access point
-   - Players can now right-click the chest to open the marketplace
 
 ### Data Management System
 
