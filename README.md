@@ -6,7 +6,6 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
 
 - **Currency System:** A server-based economy system where players have a virtual currency balance
 - **Commands:**
-
   - **Economy Commands:**
     - `/bal` or `/balance` - Check your current balance
     - `/balance <player>` - Check another player's balance
@@ -26,16 +25,32 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
     - `/bid <amount>` - Place a bid on the active auction
     - `/bid info` - View the current auction and your bid status
   - **Job Commands:**
-    - `/jobs` - Show available commands for the jobs system
-    - `/jobs list` - View available jobs with clickable activation
+    - `/jobs` - Open jobs GUI (or show help if GUI disabled)
+    - `/jobs list` - View available jobs with clickable activation (GUI or text)
+    - `/jobs activate <id>` - Activate a specific job by ID
     - `/jobs info` - View your active job and progress
     - `/jobs complete` - Complete your active job and collect reward
-    - `/jobs abandon` - Abandon your active job (with penalty)
+    - `/jobs abandon` - Abandon your active job (with penalty, confirmation required)
+    - `/jobs abandon confirm` - Confirm job abandonment
+    - `/jobs level` - View your job level and available job slots (up to 14 at max level)
+    - `/jobs boosters` - View available job boosters
+    - `/jobs boosters use <type>` - Use a job booster (multiplier, instant, etc.)
+    - `/jobs skip` - Skip current job (with cost, confirmation required)
+    - `/jobs skip confirm` - Confirm job skip
+    - `/currencygui` - Toggle GUI on/off for jobs system
+    - `/currencygui on` - Enable GUI interface (default)
+    - `/currencygui off` - Disable GUI interface (text-based)
   - **Plot Commands:**
-    - `/plots` - View all plots you own and their tax information
+    - `/plots` - Open plot dashboard GUI showing owned plots and tax information
     - `/plots buy <type>` - Purchase a plot of the specified type (Personal, Farm, or Business)
     - `/plots sell <type>` - Sell a plot you own
     - `/tax` - Force an immediate tax collection (admin only)
+    - **Admin Plot Commands:**
+      - `/plots create` - Create a new plot at current location (admin)
+      - `/plots edit` - Edit plot properties at current location (admin)
+      - `/plots remove` - Remove plot at current location (admin)
+      - `/plots grant <player> <type>` - Grant a plot to a player (admin)
+      - `/plots delete` - Permanently delete plot at current location (admin)
   - **Marketplace Commands:**
     - `/market` - Open the marketplace interface
     - `/market setchest` - Set the marketplace chest location (admins only)
@@ -49,7 +64,6 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
     - `/modstatus` - Show comprehensive status information about the mod
 
 - **Player Shops:** Create shops using signs attached to chests to buy and sell items
-
   - **Buy and Sell Shops:** Different shop types for different transaction directions
   - **Admin Shops:** Special shops with unlimited stock for server admins
   - **Transaction Notifications:** Get notified when players buy from or sell to your shops
@@ -58,25 +72,21 @@ A comprehensive Minecraft Fabric mod that adds a server-based economy system wit
 - **Trading System:** Send direct player-to-player trade requests for items
 
 - **Auction House:** Create auctions for items and allow players to bid on them
-
   - **Real-time Bidding:** Players can place bids on active auctions
   - **Countdown Notifications:** Get notified when auctions are ending soon
   - **Item Recovery:** Automatically recover items if bidders or sellers are offline
 
 - **Jobs System:** Complete jobs to earn money by collecting resources
-
   - **Randomized Jobs:** Jobs are randomly generated with varying requirements and rewards
   - **Progress Tracking:** Track your progress toward job completion
   - **Multiple Job Options:** Choose from multiple jobs based on your preferences
 
 - **Plot System:** Purchase and manage different types of land plots
-
   - **Multiple Plot Types:** Personal, Farm, and Business plots with different pricing
   - **Daily Taxation:** Automatic tax collection based on plot type
   - **Tax Notifications:** Get notified when taxes are collected
 
 - **Marketplace:** A global marketplace for buying items directly from the server
-
   - **Simple Interface:** Easy-to-use interface for browsing and purchasing items
   - **Centralized Shopping:** Buy common items without needing to find player shops
 
@@ -171,13 +181,11 @@ This command will display the current plot prices and other configuration settin
 The mod includes a direct player-to-player trading system:
 
 1. **Initiating a Trade:**
-
    - Hold the item you want to sell in your main hand
    - Type `/trade <playername> <price>` to send a trade request
    - Example: `/trade Steve 50` offers to sell the item in your hand to Steve for $50
 
 2. **Receiving a Trade:**
-
    - When someone sends you a trade request, you'll see a message with details about the offer
    - The message includes clickable [Accept] and [Deny] buttons
    - You can also type `/trade accept` or `/trade deny`
@@ -197,7 +205,6 @@ The mod includes a direct player-to-player trading system:
 2. Place a sign on the chest (either on top or attached to the side)
 3. Fill the chest with the items you want to sell (for Buy shops) or leave space for items to be received (for Sell shops)
 4. Write the following on the sign:
-
    - First line: `[Buy]` (for a shop where players buy from you) or `[Sell]` (for a shop where players sell to you)
    - Second line: The item name (e.g., `Diamond`)
    - Third line: The quantity (e.g., `64`)
@@ -239,26 +246,22 @@ The mod includes a direct player-to-player trading system:
 The mod includes an auction system that allows players to auction items and bid on them:
 
 1. **Creating an Auction:**
-
    - Hold the item you want to auction in your main hand
    - Type `/auction create <startprice> <minutes>` to create an auction
    - Example: `/auction create 100 5` creates an auction starting at $100 that lasts for 5 minutes
    - The item will be removed from your inventory and placed in the auction
 
 2. **Viewing the Active Auction:**
-
    - `/auction view` - View the currently running auction
    - Only one auction can be active at a time
 
 3. **Placing Bids:**
-
    - Use `/bid <amount>` to place a bid on the active auction
    - Example: `/bid 150` to bid $150 on the current auction
    - You must have enough money in your balance to place the bid
    - The bid must be higher than the current highest bid by at least 5%
 
 4. **Auction Completion:**
-
    - When an auction ends:
      - If there were bids, the highest bidder receives the item and the seller receives the money
      - If there were no bids, the item is returned to the seller
@@ -275,27 +278,23 @@ The mod includes an auction system that allows players to auction items and bid 
 The mod includes a jobs system that allows players to earn money by collecting resources:
 
 1. **Viewing Available Jobs:**
-
    - Use `/jobs list` to see a list of available jobs
    - Each job requires collecting a specific quantity of a specific item
    - Jobs are randomly generated with variations in quantity and reward
    - Click directly on a job in the list to activate it
 
 2. **Activating a Job:**
-
    - Click on a job in the list to activate it
    - You can only have one active job at a time
    - Active jobs are highlighted with a green 【ACTIVE】 tag
 
 3. **Checking Your Active Job:**
-
    - Use `/jobs info` to see details about your active job
    - The command shows the item required, quantity, and reward
    - It also displays your progress, including how many items you've collected
    - If you have all required items, you'll see a completion prompt
 
 4. **Completing a Job:**
-
    - Collect the required items in your inventory
    - Use `/jobs complete` to turn in the items and receive your reward
    - The items will be removed from your inventory and you'll receive the money
@@ -312,24 +311,20 @@ The mod includes a jobs system that allows players to earn money by collecting r
 The mod includes a property ownership system with different types of plots:
 
 1. **Plot Types:**
-
    - **Personal Plot:** Basic plot for personal use. Cost: $1000, Tax: $1/day
    - **Farm Plot:** Medium plot for farming purposes. Cost: $2000, Tax: $2/day
    - **Business Plot:** Premium plot for commercial uses. Cost: $3000, Tax: $3/day
 
 2. **Buying Plots:**
-
    - Use `/plots buy <type>` to purchase a plot of the specified type
    - Example: `/plots buy farm` to buy a Farm plot
    - You must have enough money for the purchase price
 
 3. **Viewing Your Plots:**
-
    - Use `/plots` to see all plots you own
    - The command shows the number of each plot type and the daily tax amount
 
 4. **Selling Plots:**
-
    - Use `/plots sell <type>` to sell a plot
    - You'll receive a partial refund of the purchase price
    - Example: `/plots sell personal` to sell a Personal plot
@@ -344,12 +339,10 @@ The mod includes a property ownership system with different types of plots:
 The mod includes a global marketplace for purchasing items directly from the server:
 
 1. **Opening the Marketplace:**
-
    - Use `/market` to open the marketplace interface
    - Browse through available items and their prices
 
 2. **Purchasing Items:**
-
    - Click on an item in the marketplace to view details
    - Confirm your purchase to buy the item
    - The item will be added to your inventory and the cost deducted from your balance
@@ -364,17 +357,14 @@ The mod includes a global marketplace for purchasing items directly from the ser
 The mod includes a comprehensive data management system:
 
 1. **Viewing Data Status:**
-
    - Use `/data status` to see the current status of data management
    - View information about auto-saves, last save time, and available backups
 
 2. **Manual Saving:**
-
    - Use `/data save` to force an immediate save of all data
    - Useful before making major changes or when testing
 
 3. **Backup Management:**
-
    - Create backups: `/data backup create`
    - List available backups: `/data backup list`
    - Restore from a backup: `/data backup restore <name>`

@@ -160,8 +160,8 @@ public class JobCommand {
         Text level10Info = Text.literal("\n • Levels 10-14: 7 jobs").formatted(Formatting.GRAY);
         Text level15Info = Text.literal("\n • Levels 15-19: 8 jobs").formatted(Formatting.GRAY);
         Text level20Info = Text.literal("\n • Levels 20-24: 10 jobs").formatted(Formatting.GRAY);
-        Text level25Info = Text.literal("\n • Levels 25-29: 11 jobs").formatted(Formatting.GRAY);
-        Text level30Info = Text.literal("\n • Level 30: 12 jobs").formatted(Formatting.GRAY);
+        Text level25Info = Text.literal("\n • Levels 25-29: 12 jobs").formatted(Formatting.GRAY);
+        Text level30Info = Text.literal("\n • Level 30: 14 jobs").formatted(Formatting.GRAY);
         
         // Send help messages
         source.sendFeedback(() -> helpHeader, false);

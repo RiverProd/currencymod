@@ -29,8 +29,8 @@ import static net.currencymod.ui.ConfirmScreenHandler.makeFiller;
  * Layout:
  *   Row 0 [0-8]:   LEVEL(0) ■ ■ STREAK(3) ■ ■ SKIPS(6) ■ BOOSTER(8)
  *   Row 1 [9-17]:  all filler (visual padding)
- *   Row 2 [18-26]: ■ J1(19) J2(20) J3(21) ■ J4(23) J5(24) J6(25) ■
- *   Row 3 [27-35]: ■ J7(28) J8(29) J9(30) ■ J10(32) J11(33) J12(34) ■
+ *   Row 2 [18-26]: ■ J1(19) J2(20) J3(21) J4(22) J5(23) J6(24) J7(25) ■
+ *   Row 3 [27-35]: ■ J8(28) J9(29) J10(30) J11(31) J12(32) J13(33) J14(34) ■
  *   Row 4 [36-44]: all filler (visual padding)
  *   Row 5 [45-53]: ■ COMPLETE(46) ■ ABANDON(48) ■ SKIP(50) ■ ■ CLOSE(53)
  */
@@ -42,12 +42,14 @@ public class JobsScreenHandler extends GenericContainerScreenHandler {
     private static final int SLOT_SKIPS   = 6;
     private static final int SLOT_BOOSTER = 8;
 
-    // Job slots (12 max across rows 2 and 3, split with gap in middle)
+    // Job slots (14 max across rows 2 and 3)
     private static final int[] JOB_SLOTS = {
         19, 20, 21,   // jobs 1-3
-        23, 24, 25,   // jobs 4-6
-        28, 29, 30,   // jobs 7-9
-        32, 33, 34    // jobs 10-12
+        22, 23, 24,   // jobs 4-6
+        25,           // job 7
+        28, 29, 30,   // jobs 8-10
+        31, 32, 33,   // jobs 11-13
+        34            // job 14
     };
 
     // Row 5 – action buttons
@@ -57,19 +59,19 @@ public class JobsScreenHandler extends GenericContainerScreenHandler {
     private static final int SLOT_CLOSE    = 53;
 
     private final ServerPlayerEntity player;
-    private final Job[] renderedJobs = new Job[12];
+    private final Job[] renderedJobs = new Job[14];
 
     private JobsScreenHandler(int syncId, PlayerInventory playerInv,
                                SimpleInventory gui, ServerPlayerEntity player,
                                Job[] renderedJobs) {
         super(ScreenHandlerType.GENERIC_9X6, syncId, playerInv, gui, 6);
         this.player = player;
-        System.arraycopy(renderedJobs, 0, this.renderedJobs, 0, 12);
+        System.arraycopy(renderedJobs, 0, this.renderedJobs, 0, 14);
     }
 
     /** Opens (or re-opens) the Jobs GUI for the given player. */
     public static void open(ServerPlayerEntity player) {
-        Job[] renderedJobs = new Job[12];
+        Job[] renderedJobs = new Job[14];
         SimpleInventory gui = buildGui(player, renderedJobs);
         player.openHandledScreen(new SimpleNamedScreenHandlerFactory(
             (syncId, inv, p) -> new JobsScreenHandler(syncId, inv, gui, player, renderedJobs),
@@ -392,7 +394,7 @@ public class JobsScreenHandler extends GenericContainerScreenHandler {
     }
 
     private static ItemStack makeStackedItem(net.minecraft.item.Item item, int count,
-                                              String name, List<String> lore) {
+        String name, List<String> lore) {
         ItemStack stack = new ItemStack(item, count);
         stack.set(DataComponentTypes.CUSTOM_NAME,
             Text.literal(name).styled(s -> s.withItalic(false)));
@@ -406,12 +408,12 @@ public class JobsScreenHandler extends GenericContainerScreenHandler {
     }
 
     private static int unlockLevelForSlot(int slotIndex) {
-        if (slotIndex < 5)  return 0;
-        if (slotIndex < 6)  return 5;
-        if (slotIndex < 7)  return 10;
-        if (slotIndex < 8)  return 15;
-        if (slotIndex < 10) return 20;
-        if (slotIndex < 11) return 25;
-        return 30;
+        if (slotIndex < 5)  return 0;   // slots 0-4: level 0 (5 jobs)
+        if (slotIndex < 6)  return 5;   // slot 5: level 5 (6 jobs)
+        if (slotIndex < 7)  return 10;  // slot 6: level 10 (7 jobs)
+        if (slotIndex < 8)  return 15;  // slot 7: level 15 (8 jobs)
+        if (slotIndex < 10) return 20;  // slots 8-9: level 20 (10 jobs)
+        if (slotIndex < 12) return 25;  // slots 10-11: level 25 (12 jobs)
+        return 30;                     // slots 12-13: level 30 (14 jobs)
     }
 }

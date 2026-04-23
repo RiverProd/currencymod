@@ -81,8 +81,8 @@ public class PlayerJobLevel {
      * - Levels 10-14: 7 jobs
      * - Levels 15-19: 8 jobs
      * - Levels 20-24: 10 jobs
-     * - Levels 25-29: 11 jobs
-     * - Level 30: 12 jobs
+     * - Levels 25-29: 12 jobs
+     * - Level 30: 14 jobs
      *
      * @return The number of jobs the player should have
      */
@@ -91,9 +91,9 @@ public class PlayerJobLevel {
         int baseJobs = 5;
         
         if (level >= 30) {
-            return 12; // Maximum at level 30
+            return 14; // Maximum at level 30
         } else if (level >= 25) {
-            return 11; // Levels 25-29
+            return 12; // Levels 25-29
         } else if (level >= 20) {
             return 10; // Levels 20-24
         } else if (level >= 15) {
